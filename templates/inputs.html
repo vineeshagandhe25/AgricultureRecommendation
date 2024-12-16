@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Prediction</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='inputs.css')}}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Fertilizer Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="temperature">Temperature (°C):</label>
+            <input type="number" id="temperature" name="temperature" step="0.1" required>
+
+            <label for="humidity">Humidity (%):</label>
+            <input type="number" id="humidity" name="humidity" step="0.1" required>
+
+            <label for="moisture">Moisture (%):</label>
+            <input type="number" id="moisture" name="moisture" step="0.1" required>
+
+            <label for="soil_type">Soil Type:</label>
+            <select id="soil_type" name="soil_type" required>
+                <option value="Sandy">Sandy</option>
+                <option value="Clayey">Clayey</option>
+                <option value="Loamy">Loamy</option>
+                <option value="Silty">Silty</option>
+            </select>
+
+            <label for="crop_type">Crop Type:</label>
+            <select id="crop_type" name="crop_type" required>
+                <option value="Rice">Rice</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Maize">Maize</option>
+                <option value="Sugarcane">Sugarcane</option>
+            </select>
+
+            <label for="nitrogen">Nitrogen (N):</label>
+            <input type="number" id="nitrogen" name="nitrogen" required>
+
+            <label for="potassium">Potassium (K):</label>
+            <input type="number" id="potassium" name="potassium" required>
+
+            <label for="phosphorous">Phosphorous (P):</label>
+            <input type="number" id="phosphorous" name="phosphorous" required>
+
+            <button type="submit" class="submit-btn">Predict Fertilizer</button>
+        </form>
+    </div>
+</body>
+</html>

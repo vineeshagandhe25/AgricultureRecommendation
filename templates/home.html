@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fertilizer Optimization</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='homepage.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Fertilizer Optimizer</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="{{ url_for('login') }}" class="btn login-btn">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}" class="btn signup-btn">Signup</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Section with Images and Text -->
+    <main id="home">
+        <div class="main-container">
+            <div class="image-section">
+                <img class="fancy-image" src="https://img.freepik.com/free-photo/planet-earth-surrounded-by-nature-vegetation_23-2151587899.jpg?t=st=1725793415~exp=1725797015~hmac=80a03d612ceb77e2aa7b78718cb24eb85b50910743107009a1c2f02b8f2674cc&w=996" alt="Fertilizer Application">
+            </div>
+            <div class="text-section">
+                <h1>Welcome to Fertilizer Optimization</h1>
+                <p>
+                    The Sustainable Fertilizer Usage Optimizer is designed to provide farmers, agricultural experts, and institutions with tailored fertilizer recommendations based on a wide range of factors such as soil health, crop type, and local weather conditions.<br> By integrating data analysis and machine learning techniques, our platform ensures that the right type and amount of fertilizer is used for each specific situation, maximizing crop yield while preserving the environment.
+
+Our tool allows farmers to optimize their fertilizer usage in a sustainable manner, enabling long-term benefits for both their land and their income.<br> Our solution’s approach minimizes waste, prevents soil depletion, and reduces the risk of over-fertilization, ultimately contributing to a healthier ecosystem.
+
+.</p>
+                <a href="{{ url_for('inputs') }}" class="cta-button">Predict</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2>About Fertilizer Optimization</h2>
+        <p>
+            Our platform provides data-driven insights to help farmers achieve better yields and use fertilizers more efficiently. By using our platform, you can save money, enhance crop growth, and protect the environment.
+            <br>The precise fertilizer recommendations will lead to better crop performance, ensuring maximum yield for each unit of fertilizer used.<br>By enhancing crop yields and reducing fertilizer waste, the platform will lead to a significant increase in farmers' income, supporting economic development in rural areas.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Soil Analysis</h3>
+                <p>Get detailed soil reports to maximize crop production with optimized fertilizer use.</p>
+            </div>
+            <div class="service-card">
+                <h3>Fertilizer Recommendations</h3>
+                <p>Receive personalized recommendations for the ideal fertilizer type and application strategy.</p>
+            </div>
+            <div class="service-card">
+                <h3>Weather Data</h3>
+                <p>Access real-time weather forecasts to plan the perfect time for fertilization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>Fertilizer Optimizer</h3>
+                <p>Helping farmers make smarter fertilizer decisions for better yields and sustainability.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact" id="contact">
+                <h4>Contact Us</h4>
+                <p>Email: info@fertilizeroptimization.com</p>
+                <p>Phone: +123 456 7890</p>
+                <p>Location: 123 Farm St, AgriCity</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Fertilizer Optimizer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll-triggered Animation -->
+    <script>
+        window.addEventListener("scroll", function() {
+            const images = document.querySelectorAll('.fancy-image');
+            images.forEach(image => {
+                const rect = image.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    image.classList.add("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
