@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .question {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .output-section {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .votes {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .votes button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .votes span {
+            font-weight: bold;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .answer-box {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ask a Question</h1>
+        <textarea id="questionInput" rows="3" placeholder="Type your question here..."></textarea>
+        <button class="submit-btn" onclick="submitQuestion()">Submit Question</button>
+
+        <h2>Questions & Answers</h2>
+        <div id="questionsContainer"></div>
+    </div>
+
+    <script>
+        let questionId = 0;
+
+        function submitQuestion() {
+            const questionText = document.getElementById('questionInput').value;
+
+            if (questionText.trim() !== "") {
+                questionId++;
+                const questionContainer = document.getElementById('questionsContainer');
+                
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question');
+                questionElement.innerHTML = `
+                    <p><strong>Question:</strong> ${questionText}</p>
+                    <div class="output-section" id="output-${questionId}">
+                        <p><strong>Answer:</strong></p>
+                        <div id="answerOutput-${questionId}">No answers yet.</div>
+                    </div>
+                    <div class="answer-box">
+                        <textarea id="answerInput-${questionId}" rows="2" placeholder="Type your answer here..."></textarea>
+                        <button class="submit-btn" onclick="submitAnswer(${questionId})">Submit Answer</button>
+                    </div>
+                    <div class="votes">
+                        <button onclick="vote('up', ${questionId})">👍</button>
+                        <button onclick="vote('down', ${questionId})">👎</button>
+                        <span id="voteCount-${questionId}">0</span> votes
+                    </div>
+                `;
+                questionContainer.appendChild(questionElement);
+
+                // Clear the text area
+                document.getElementById('questionInput').value = '';
+            }
+        }
+
+        function submitAnswer(questionId) {
+            const answerText = document.getElementById(`answerInput-${questionId}`).value;
+
+            if (answerText.trim() !== "") {
+                const answerOutput = document.getElementById(`answerOutput-${questionId}`);
+                answerOutput.innerHTML = `<p>${answerText}</p>`;
+                // Clear the answer textarea after submitting
+                document.getElementById(`answerInput-${questionId}`).value = '';
+            }
+        }
+
+        function vote(type, id) {
+            const voteCount = document.getElementById(`voteCount-${id}`);
+            let currentVotes = parseInt(voteCount.textContent);
+
+            if (type === 'up') {
+                voteCount.textContent = currentVotes + 1;
+            } else {
+                voteCount.textContent = currentVotes - 1;
+            }
+        }
+    </script>
+</body>
+</html>
