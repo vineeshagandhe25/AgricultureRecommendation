@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feedback-buttons span {
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        .feedback-buttons button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .feedback-buttons button:hover {
+            color: #4CAF50;
+        }
+
+        .feedback-buttons .downvote:hover {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fertilizer Feedback Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Moisture</th>
+                <th>Soil Type</th>
+                <th>Crop Type</th>
+                <th>Nitrogen</th>
+                <th>Potassium</th>
+                <th>Phosphorus</th>
+                <th>Fertilizer</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>30°C</td>
+                <td>50%</td>
+                <td>25%</td>
+                <td>Loamy</td>
+                <td>Wheat</td>
+                <td>50 kg/ha</td>
+                <td>40 kg/ha</td>
+                <td>30 kg/ha</td>
+                <td>Urea</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button class="upvote">&#128077;</button><span id="upvote-count-1">0</span>
+                        <button class="downvote">&#128078;</button><span id="downvote-count-1">0</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>28°C</td>
+                <td>60%</td>
+                <td>30%</td>
+                <td>Clay</td>
+                <td>Rice</td>
+                <td>60 kg/ha</td>
+                <td>50 kg/ha</td>
+                <td>20 kg/ha</td>
+                <td>Ammonium Sulfate</td>
+                <td>
+                    <div class="feedback-buttons">
+                        <button class="upvote">&#128077;</button><span id="upvote-count-2">0</span>
+                        <button class="downvote">&#128078;</button><span id="downvote-count-2">0</span>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        const feedbackData = [
+            { upvotes: 0, downvotes: 0 },
+            { upvotes: 0, downvotes: 0 }
+        ];
+
+        document.querySelectorAll('.feedback-buttons').forEach((container, index) => {
+            const upvoteButton = container.querySelector('.upvote');
+            const downvoteButton = container.querySelector('.downvote');
+            const upvoteCount = container.querySelector(`#upvote-count-${index + 1}`);
+            const downvoteCount = container.querySelector(`#downvote-count-${index + 1}`);
+
+            upvoteButton.addEventListener('click', () => {
+                feedbackData[index].upvotes++;
+                upvoteCount.textContent = feedbackData[index].upvotes;
+            });
+
+            downvoteButton.addEventListener('click', () => {
+                feedbackData[index].downvotes++;
+                downvoteCount.textContent = feedbackData[index].downvotes;
+            });
+        });
+    </script>
+</body>
+</html>
